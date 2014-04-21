@@ -1,0 +1,247 @@
+JGCSCS
+4
+Pig Latin
+*.pig
+Steven Noto
+Steven Noto
+
+http://pig.apache.org
+TRUE
+--
+
+1
+Pig Latin coloring scheme for Apache Pig, a part of Apache Hadoop. Based on the EditPad MySQL coloring scheme.
+6
+-- Pig Latin Script
+REGISTER ./test.jar;
+raw = LOAD 'test.log' USING PigStorage('\t') AS (userid:int, info:chararray);
+grouped = GROUP raw BY (userid);
+ordered_grouped = ORDER grouped BY (userid);
+STORE ordered_grouped INTO '/tmp/output' USING PigStorage();
+0
+TRUE
+10
+Keyword
+Keywords are case-insensitive
+\b(?>AND|ANY|ALL|ARRANGE|AS(?:C)?|BAG|BY|BYTEARRAY|CACHE|CAT|CD|CHARARRAY|COGROUP|CP|CROSS|DATETIME|%DECLARE|%DEFAULT|DEFINE|DESC(?:RIBE)?|DISTINCT|DOUBLE|DU(?:MP)?|E(?:VAL|XEC|XPLAIN)?|F(?:ILTER|LATTEN|LOAT|OREACH|ULL)?|GENERATE|GROUP|HELP|IF|ILLUSTRATE|IMPORT|INNER|INPUT|INT(?:O)?|IS|JOIN|KILL|L(?:EFT|IMIT|OAD|ONG|S)?|MAP|MATCHES|MKDIR|MV|NOT|NULL|ONSCHEMA|OR(?:DER)?|OUTER|OUTPUT|PARALLEL|PIG|PWD|QUIT|REGISTER|RIGHT|RM(?:RMF)?|RUN|SAMPLE|SET|SHIP|SPLIT|STDERR|STDIN|STDOUT|STORE|STREAM|THROUGH|TUPLE|UNION|USING)\b
+TRUE
+FALSE
+7
+0
+
+
+0
+FALSE
+Functions
+Functions are case-sensitive
+\b(?>AVG|BinStorage|CONCAT|copyFromLocal|copyToLocal|COUNT|DIFF|E|F|L|MAX|MIN|PigDump|PigStorage|SIZE|SUM|TextLoader|TOKENIZE)\b
+TRUE
+FALSE
+8
+0
+
+
+0
+FALSE
+Integer or float
+
+\b[0-9]++(\.[0-9]++)?([eE][-+]?+[0-9]++)?\b
+FALSE
+FALSE
+10
+0
+
+
+0
+FALSE
+Single-line comment
+
+--(?:.*+|$)
+FALSE
+FALSE
+5
+0
+
+
+0
+TRUE
+Single-line comment
+
+#.*+
+FALSE
+FALSE
+5
+0
+
+
+0
+TRUE
+Multi-line comment
+We use a toggle subscheme to find the closing tag for performance reasons, since we cannot use a possessive negated character class to skip over the commented text
+/\*
+FALSE
+FALSE
+5
+0
+
+
+3
+FALSE
+Single-quoted string
+
+'
+FALSE
+FALSE
+9
+0
+
+
+4
+FALSE
+Double-quoted string
+
+"
+FALSE
+FALSE
+9
+0
+
+
+5
+FALSE
+Brackets
+
+[()]++
+FALSE
+FALSE
+17
+0
+
+
+0
+FALSE
+Operator
+Don't repeat the character class so =-- is properly highlighted as a comment after an equals sign
+[+-*/%?:=<>!]
+FALSE
+FALSE
+13
+0
+
+
+0
+FALSE
+5
+(
+)
+TRUE
+3
+[
+]
+TRUE
+3
+{
+}
+TRUE
+3
+"
+"
+FALSE
+5
+'
+'
+FALSE
+5
+3
+Multi-line comment
+1
+5
+TRUE
+1
+Closing */
+
+\*/
+FALSE
+FALSE
+5
+0
+
+
+2
+FALSE
+Single-quoted string
+1
+9
+TRUE
+3
+Escaped character
+This element makes sure escaped characters are skipped.  Using lookbehind won't work, since (?<!\\)" would fail to match the closing " in "string\\"
+\\.
+FALSE
+FALSE
+9
+0
+
+
+0
+FALSE
+Doubled single quote
+Quote characters can be doubled to include a single quote character in the string
+''
+FALSE
+FALSE
+9
+0
+
+
+0
+FALSE
+Closing '
+
+'
+FALSE
+FALSE
+9
+0
+
+
+2
+FALSE
+Double-quoted string
+1
+9
+TRUE
+3
+Escaped character
+This element makes sure escaped characters are skipped.  Using lookbehind won't work, since (?<!\\)" would fail to match the closing " in "string\\"
+\\.
+FALSE
+FALSE
+9
+0
+
+
+0
+FALSE
+Doubled double quote
+Quote characters can be doubled to include a single quote character in the string
+""
+FALSE
+FALSE
+9
+0
+
+
+0
+FALSE
+Closing "
+
+"
+FALSE
+FALSE
+9
+0
+
+
+2
+FALSE
