@@ -1,5 +1,5 @@
-EdiPad Pro - Pig Latin Coloring Scheme
-======================================
+EditPad Pro - Pig Latin Coloring Scheme
+=======================================
 
 Pig Latin coloring scheme for Apache Pig, a part of Apache Hadoop. For use in EditPad Pro text editor. Originally based on the built-in EditPad MySQL coloring scheme.
 
